@@ -26,6 +26,3 @@ Label
 ----|----
 | label_name | string |
 | task_id | intger |
-
-
-## スキーマー
