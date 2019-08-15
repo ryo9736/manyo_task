@@ -1,7 +1,7 @@
 # manyou_task
   タスク管理システムです
 
-#スキーマ
+# スキーマ
 
 | model | 外部キー |カラム|カラム|カラム|カラム|カラム|
 ----|----|----|----|----|----|----
@@ -9,7 +9,7 @@
 | task | user_id | task_name | content | limit | status | priority |
 | label| task_id | label_name | ---- | ---- | ---- | ---- |
 
-#テーブル
+# テーブル
 
 User
 
