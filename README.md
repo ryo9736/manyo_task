@@ -3,11 +3,11 @@
 
 #スキーマ
 
-| model | 外部キー |カラム|カラム||カラム||カラム|カラム|
+| model | 外部キー |カラム|カラム|カラム|カラム|カラム|
 |----|----|----|----|----|----|----|
-| user | ---- |name||----|----|----|----|
-| task | user_id |task_name|content|limit|status|priority|
-| label| task_id |label_name|----|----|----|----|
+| user | ---- | name | ---- | ---- | ---- | ---- |
+| task | user_id | task_name | content | limit | status | priority |
+| label| task_id | label_name | ---- | ---- | ---- | ---- |
 
 #テーブル
 
