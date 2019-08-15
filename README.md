@@ -1,24 +1,31 @@
-# README
+# manyou_task
+  タスク管理システムです
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# model
 
-Things you may want to cover:
+User
 
-* Ruby version
+| カラム | 型 |
+----|----
+| name | string |
 
-* System dependencies
+Task
 
-* Configuration
+| カラム | 型 |
+----|----
+| task_name | string |
+| content | text |
+| limit | string |
+| status | string|
+| priority | string |
+| user_id | intger |
 
-* Database creation
+Label
 
-* Database initialization
+| カラム | 型 |
+----|----
+| label_name | string |
+| task_id | intger |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## スキーマー
