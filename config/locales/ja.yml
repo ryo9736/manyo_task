@@ -2,6 +2,10 @@ ja:
   activerecord:
     models:
       task: タスク
+    attributes:
+      task:
+        task_name: タスク名
+        content: 内容
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -134,6 +138,8 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      task_name: タスク名
+      content: 内容
     template:
       body: 次の項目を確認してください
       header:
