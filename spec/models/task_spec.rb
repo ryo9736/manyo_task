@@ -1,18 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-    # 名前があれば有効な状態にすること
-    it "is valid with a task_name, content" do
-        task = Task.new(
-            task_name:'課題１',
-            content:'テスト')
-        expect(task).to be_valid
-    end
-    # コンテントが101文字以上なら無効な状態であること
-    it "is invalid with content is 101 or more characters" do
-        task = Task.new(content:'1'*102)
-        task.valid?
-        expect(task.errors[:content]).to include("is too long (maximum is 100 characters)")
+
+    it "titleが空ならバリデーションが通らない" do
+      task = Task.new(task_name:'',content:'失敗テスト')
+      expect(task).not_to be_valid
     end
 
+    it "contentが空ならバリデーションが通らない" do
+      task = Task.new(task_name:'失敗テスト',content:'')
+      expect(task).not_to be_valid
+    end
+
+    it "titleとcontentに内容が記載されていればバリデーションが通る" do
+      task = Task.new(task_name:'テスト１',content:'テスト１')
+      expect(task).to be_valid
+    end
   end
