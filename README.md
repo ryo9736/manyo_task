@@ -1,5 +1,26 @@
 # manyou_task
-  タスク管理システムです
+タスク管理システムです
+
+# Herokuにデプロイする手順
+herokuにログインする
+heroku login
+
+アプリセットコンパイルを行う
+rails assets:precompile RAILS_ENV=production
+
+gitへコミットする
+git add -A
+git commit -m "init"
+
+新しいアプリケーションを作成
+heroku create
+
+Herokuにデプロイする
+git push heroku master
+
+データベースの移行
+heroku run rails db:migrate
+
 
 ## スキーマ
 
