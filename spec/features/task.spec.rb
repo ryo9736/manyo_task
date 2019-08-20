@@ -3,10 +3,12 @@ require 'rails_helper'
 
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
-    background do
-        FactoryBot.create(:task)
-        FactoryBot.create(:second_task)
-      end
+  background do
+
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+
+  end
 
   scenario "タスク一覧のテスト" do
 
@@ -44,9 +46,25 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
 
     visit tasks_path
+
     task = all('.task_list')
     task_0 = task[0]
     expect(task_0).to have_content "テスト2"
+    
+  end
+
+  scenario "タスクが終了期限の降順に並んでいるかのテスト" do
+
+    visit tasks_path
+
+    click_on '終了期限でソートする'
+
+    task = all('.task_list')
+
+    task_0 = task[0]
+
+    expect(task_0).to have_content "テスト2"
+
     save_and_open_page
 
   end
