@@ -16,6 +16,7 @@
   <%= f.hidden_field :search, value: 'true' %>
 
   <%= f.submit '絞り込み検索'%>
+
 <% end %>
 
 <table>
@@ -45,3 +46,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= paginate @tasks %>

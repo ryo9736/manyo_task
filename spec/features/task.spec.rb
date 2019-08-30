@@ -51,8 +51,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     task_0 = task[0]
 
-    expect(task_0).to have_content "テスト2"
-    
+    save_and_open_page
+
+    expect(task_0).to have_content "課題2"
+
   end
 
   scenario "タスクが終了期限の降順に並んでいるかのテスト" do
@@ -107,7 +109,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     save_and_open_page
 
-    expect(page).to have_content '課題2'
+    expect(page).to have_content 'テスト2'
 
   end
 

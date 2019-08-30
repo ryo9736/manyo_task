@@ -10,4 +10,6 @@ class Task < ApplicationRecord
   scope :search_title , -> (params) {where('(title LIKE?)',"%#{ params.dig(:task, :title)}%" )}
   scope :search_status , -> (params) {where('(status LIKE?)',"%#{ params.dig(:task, :status) }%" )}
 
+  paginates_per 10
+
 end

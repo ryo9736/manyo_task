@@ -14,13 +14,14 @@ class TasksController < ApplicationController
   end
 
   def index
+    @task = Task.all
     if params[:search].nil?
       if params[:sort_expired]
-        @tasks = Task.all.expired_sort
+        @tasks = @task.expired_sort
       elsif params[:sort_priority]
-        @tasks = Task.all.priority_sort
+        @tasks = @task.priority_sort
       else
-        @tasks = Task.all.recent
+        @tasks = @task.recent
       end
     else
       if  params[:task] && params.dig(:task, :title).present? && params.dig(:task, :status).present?
@@ -30,9 +31,10 @@ class TasksController < ApplicationController
       elsif params[:task] &&  params.dig(:task, :title).blank? && params.dig(:task, :status).present?
         @tasks = Task.search_status(params)
       else
-        @tasks = Task.all.recent
+        @tasks = @task.recent
       end
     end
+    @tasks = @tasks.page(params[:page])
   end
 
   def show
