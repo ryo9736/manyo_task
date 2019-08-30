@@ -9,17 +9,14 @@
     </ul>
   </div>
 <% end %>
-    <div class="title">
       <%= f.label :タイトル %>
       <%= f.text_field :title %>
-    </div>
-    <div class="task_content">
       <%= f.label :内容%>
       <%= f.text_field :content %>
-      <div class="task_status">
       <%= f.label :状態%>
       <%= f.select :status, ['未着手','着手中','完了'], include_blank: true, selected: '' %>
-    </div>
+      <%= f.label :優先順位 %>
+      <%= f.select :priority, ['高','中','低'], include_blank: true, selected: '' %>
     <%= f.submit  %>
   <% end %>
   <%= link_to '戻る',tasks_path %>
