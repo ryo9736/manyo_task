@@ -18,7 +18,7 @@
       <%= f.text_field :content %>
       <div class="task_status">
       <%= f.label :状態%>
-      <%= f.text_field :status %>
+      <%= f.select :status, ['未着手','着手中','完了'], include_blank: true, selected: '' %>
     </div>
     <%= f.submit  %>
   <% end %>
