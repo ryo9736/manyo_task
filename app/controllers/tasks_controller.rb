@@ -14,9 +14,11 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params[:task] && params.dig(:task,:search).nil?
+    if params[:search].nil?
       if params[:sort_expired]
-        @tasks = Task.all.expired
+        @tasks = Task.all.expired_sort
+      elsif params[:sort_priority]
+        @tasks = Task.all.priority_sort
       else
         @tasks = Task.all.recent
       end
@@ -55,7 +57,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title,:content,:sort_expired,:status,:search)
+    params.require(:task).permit(:title,:content,:expired,:status,:search,:priority)
   end
 
   def set_task
