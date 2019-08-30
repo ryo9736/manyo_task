@@ -48,7 +48,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
 
     task = all('.task_list')
+
     task_0 = task[0]
+
     expect(task_0).to have_content "テスト2"
     
   end
@@ -60,7 +62,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on '終了期限でソートする'
 
     task = all('.task_list')
-
     task_0 = task[0]
 
     expect(task_0).to have_content "テスト2"
@@ -110,8 +111,22 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   end
 
+  scenario "優先順位を高い順にソートするテスト" do
 
+    visit tasks_path
+
+    click_on '優先順位で高い順にソートする'
+
+    task = all('.task_list')
+    task_0 = task[0]
+
+    expect(task_0).to have_content "テスト1"
+
+    save_and_open_page
+
+  end
 
   #bin/rspec spec/features/task.spec.rb
+  #save_and_open_page
 
 end
