@@ -1,7 +1,26 @@
-<h1>タスク詳細</h1>
+<div class = "form_title">
+<h1><strong>タスク詳細</strong></h1>
+</div>
+<br>
+<br>
 <p><%= notice %></p>
-<p>タスク名: <%= @task.title %></p>
-<p>内容: <%= @task.content %></p>
-<p>状態: <%= @task.status %></p>
-<p>優先順位: <%= @task.priority %></p>
-<%= link_to 'タスク一覧',tasks_path %>
+<div class="container">
+  <div class = "row">
+    <div class="col-md-2">
+    </div>
+    <div class = "main col-md-8">
+      <br>
+      <p>タスク名: <%= @task.title %></p>
+      <br>
+      <p>内容: <%= @task.content %></p>
+      <br>
+      <p>状態: <%= @task.status %></p>
+      <br>
+      <p>優先順位: <%= @task.priority %></p>
+      <br>
+      <%= link_to 'タスク一覧',tasks_path %>
+    <br>
+    <br>
+    </div>
+    <div class ="col-md-2">
+    </div>
