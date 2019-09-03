@@ -1,22 +1,43 @@
-<%= form_with(model:@task,local: true)  do |f| %>
-  <% if @task.errors.any? %>
-  <div id="error_explanation">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <div class = "row">
+    <div class="col-md-2">
+    </div>
+    <div class="main col-md-8">
+    <%= form_with(model:@task,local: true)  do |f| %>
+    <% if @task.errors.any? %>
+    <div id="error_explanation">
     <h2><%= @task.errors.count %>件のエラーがあります。</h2>
     <ul>
     <% @task.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
-  </div>
-<% end %>
-      <%= f.label :タイトル %>
-      <%= f.text_field :title %>
-      <%= f.label :内容%>
-      <%= f.text_field :content %>
-      <%= f.label :状態%>
-      <%= f.select :status, ['未着手','着手中','完了'], include_blank: true, selected: '' %>
-      <%= f.label :優先順位 %>
-      <%= f.select :priority, ['高','中','低'], include_blank: true, selected: '' %>
+    </div>
+    <% end %>
+    <%= f.label :タイトル %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :内容%>
+    <%= f.text_field :content %>
+    <br>
+    <%= f.label :状態%>
+    <%= f.select :status, ['未着手','着手中','完了'], include_blank: true, selected: '' %>
+    <br>
+    <%= f.label :優先順位 %>
+    <%= f.select :priority, ['高','中','低'], include_blank: true, selected: '' %>
+    <br>
     <%= f.submit  %>
-  <% end %>
-  <%= link_to '戻る',tasks_path %>
+    <% end %>
+    <%= link_to '戻る',tasks_path %>
+    </div>
+    <div class="col-md-2">
+    </div>

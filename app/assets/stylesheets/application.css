@@ -14,3 +14,23 @@
  *= require_tree .
  *= require_self
  */
+
+.header{
+    font-size:4em
+}
+
+.main_left a{
+    font-size:2em
+}
+
+.main{
+    text-align: center;
+}
+
+.form_title{
+    text-align: center;
+}
+
+.info{
+    width:100%;
+}
