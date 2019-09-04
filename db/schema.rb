@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_03_090009) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "expired", default: "2019-08-19 20:02:55"
+    t.datetime "expired", default: "2019-09-04 17:03:15"
     t.string "status", default: "未着手"
     t.integer "priority"
     t.bigint "user_id"
