@@ -1,0 +1,27 @@
+<div class="container">
+  <div class = "row">
+    <div class="main col-md-12">
+      <br>
+      <br>
+      <h1>ログイン</h1>
+      <br>
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+        <%= f.label :email %>
+        <br>
+        <br>
+        <%= f.email_field :email %>
+        <br>
+        <br>
+        <%= f.label :パスワード %>
+        <br>
+        <br>
+        <%= f.password_field :password %>
+        <br>
+        <br>
+        <br>
+        <%= f.submit "ログインする" %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,4 +8,16 @@ class ApplicationController < ActionController::Base
     #     name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
     #   end
     # end
+
+  protect_from_forgery with: :exception
+  include SessionsHelper
+
+  before_action :login_required
+
+  private
+
+  def login_required
+    redirect_to new_session_path unless current_user
+  end
+
 end
