@@ -1,12 +1,21 @@
-# このrequireで、Capybaraなどの、Feature Specに必要な機能を使用可能な状態にしています
+
 require 'rails_helper'
 
-# このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   background do
 
+    FactoryBot.create(:user)
     FactoryBot.create(:task)
     FactoryBot.create(:second_task)
+
+  end
+
+  before do
+
+    visit new_session_path
+    fill_in 'session_email', with: '1@1.com'
+    fill_in 'session_password', with: '111111'
+    click_on 'ログインする'
 
   end
 
@@ -128,7 +137,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   end
 
-  #bin/rspec spec/features/task.spec.rb
-  #save_and_open_page
-
 end
+
+#bin/rspec spec/features/task.spec.rb
+  #save_and_open_page
