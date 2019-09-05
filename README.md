@@ -26,7 +26,7 @@ heroku run rails db:migrate
 
 | model | 外部キー |カラム|カラム|カラム|カラム|カラム|
 ----|----|----|----|----|----|----
-| user | ---- | name | ---- | ---- | ---- | ---- |
+| user | ---- | name | email  | password_digest  | ---- | ---- |
 | task | user_id | task_name | content | limit | status | priority |
 | label| task_id | label_name | ---- | ---- | ---- | ---- |
 
@@ -37,6 +37,8 @@ User
 | カラム | 型 |
 ----|----
 | name | string |
+| email | string |
+| password_digest | string |
 
 Task
 

@@ -9,7 +9,22 @@
   </head>
 
   <body>
-  
+    <%= render 'layouts/navbar' %>
+    <% if flash.any? %>
+      <script type="text/javascript">
+        toastr.options = {
+          "positionClass": "toast-top-center",
+          "timeOut": "3000",
+          "progressBar": true
+        }
+        <% flash.each do |key, value| %>
+          <% key = "info" if key == "info" %>
+          <% key = "success" if key == "notice" %>
+          <% key = "warning" if key == "danger" %>
+          toastr['<%= key %>']('<%= value %>');
+        <% end %>
+      </script>
+    <% end %>
     <%= yield %>
   </body>
 </html>

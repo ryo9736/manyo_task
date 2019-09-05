@@ -1,0 +1,33 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class = "form_title">
+<h1><strong>ユーザー詳細</strong></h1>
+</div>
+<br>
+<br>
+<br>
+<p><%= notice %></p>
+<div class="container">
+  <div class = "row">
+    <div class="col-md-2">
+    </div>
+    <div class = "main col-md-8">
+      <br>
+      <br>
+      <p>ユーザ名: <%= @user.name %></p>
+      <br>
+      <br>
+      <br>
+      <p>email: <%= @user.email %></p>
+      <br>
+      <br>
+      <br>
+      <%= link_to 'タスク一覧',tasks_path %>
+    </div>
+    <div class ="col-md-2">
+    </div>
+  </div>
+</div>
