@@ -5,7 +5,7 @@
       <br>
       <h1>ユーザ編集</h1>
       <br>
-        <%= form_with(model: @user, local: true) do |f| %>
+        <%= form_with(model: @user, url: admin_user_path(@user.id), local: true) do |f| %>
           <%= f.label :名前 %>
           <br>
           <br>
@@ -32,7 +32,7 @@
           <br>
           <br>
           <br>
-          <%= f.submit "アカウントを作成する" %>
+          <%= f.submit "アカウントを編集する" %>
         <% end %>
     </div>
   </div>
