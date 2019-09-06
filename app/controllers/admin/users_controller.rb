@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user,only: [:show,:edit,:update,:destroy]
+  before_action :require_admin,only: [:index,:new,]
   def new
     @user = User.new
   end
@@ -20,6 +21,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
+
   end
 
   def edit
@@ -36,9 +38,18 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:info] = 'ユーザを削除しました'
-    redirect_to admin_users_path
+    if  User.where(admin: true).count == 1 && @user.admin?
+      flash[:danger] = '管理者はあなたしかいません'
+      redirect_to admin_users_path
+    elsif User.where(admin: true).count > 1 && current_user.id == @user.id
+      @user.destroy
+      flash[:success] = '削除に成功しました'
+      redirect_to new_session_path
+    else
+      @user.destroy
+      flash[:success] = '削除に成功しました'
+      redirect_to admin_users_path
+    end
   end
 
 private
@@ -49,6 +60,10 @@ private
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 
 end
