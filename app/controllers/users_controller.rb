@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = 'ユーザ作成に成功しました'
+      flash[:success] = 'ユーザを作成しました'
       redirect_to user_path(@user.id)
     else
       flash.now[:danger] = '作成に失敗しました'

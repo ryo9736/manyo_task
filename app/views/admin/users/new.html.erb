@@ -1,0 +1,40 @@
+<div class="container">
+  <div class = "row">
+    <div class="main col-md-12">
+      <br>
+      <br>
+      <h1>ユーザ作成</h1>
+      <br>
+        <%= form_with(model: @user, url: admin_users_path , local: true) do |f| %>
+          <%= f.label :名前 %>
+          <br>
+          <br>
+          <%= f.text_field :name %>
+          <br> 
+
+          <br>
+          <%= f.label :email %>
+          <br>
+          <br>
+          <%= f.email_field :email %>
+          <br>
+          <br>
+          <%= f.label :パスワード %>
+          <br>
+          <br>
+          <%= f.password_field :password %>
+          <br>
+          <br>
+          <%= f.label :パスワード確認 %>
+          <br>
+          <br>
+          <%= f.password_field :password_confirmation %>
+          <br>
+          <br>
+          <br>
+          <br>
+          <%= f.submit "アカウントを作成する" %>
+        <% end %>
+    </div>
+  </div>
+</div>
