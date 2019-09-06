@@ -14,10 +14,12 @@
 				<% if logged_in? %>
 					<li><%= link_to 'ログアウト',session_path(current_user.id),method: :delete,class:'btn btn-default btn-block' %></li>
 					<li><%= link_to 'マイページ',user_path(current_user.id),class:'btn btn-default btn-block' %></li>
-					<li><%= link_to 'ユーザ管理',admin_users_path,class:'btn btn-default btn-block' %></li>
-					<li><%= link_to 'ユーザ作成',new_admin_user_path,class:'btn btn-default btn-block' %></li>
 					<li><%= link_to 'タスク一覧',tasks_path,class:'btn btn-default btn-block'  %></li>
 					<li><%= link_to 'タスク作成',new_task_path,class:'btn btn-default btn-block'  %></li>
+				    <% if current_user.admin? %>
+					  <li><%= link_to 'ユーザ管理',admin_users_path,class:'btn btn-default btn-block' %></li>
+					  <li><%= link_to 'ユーザ作成',new_admin_user_path,class:'btn btn-default btn-block' %></li>
+					<% end %>
 				<% else %>
 					<li><%= link_to 'サインアップ',new_user_path,class:'btn btn-default btn-block'%></li>
 					<li><%= link_to 'ログイン',new_session_path,class:'btn btn-default btn-block' %></li>
