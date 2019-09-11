@@ -22,7 +22,11 @@
       <br>
       <p>優先順位: <%= @task.priority %></p>
       <br>
-      <%= link_to 'タスク一覧',tasks_path %>
+      <p>ラベル:
+      <% @task.label_ids.each do |label_id| %>
+        <%= Label.find_by(id: label_id).name %>
+      <% end %>
+      </P>
       <br>
       <br>
     </div>
