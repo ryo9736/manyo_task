@@ -20,29 +20,28 @@ class TasksController < ApplicationController
     if params[:sort_label].nil?
       if params[:search].nil?
         if params[:sort_expired]
-          @tasks = @task.expired_sort
+          @tasks = @task.expired_sort.page(params[:page])
         elsif params[:sort_priority]
-          @tasks = @task.priority_sort
+          @tasks = @task.priority_sort.page(params[:page])
         else
-          @tasks = @task.recent
+          @tasks = @task.recent.page(params[:page])
         end
       else
         if params[:status].present? && params[:title].present?
-          @tasks = current_user.tasks.search_status(params[:status]).search_title(params[:title])
+          @tasks = current_user.tasks.search_status(params[:status]).search_title(params[:title]).page(params[:page])
         elsif params[:status].blank? && params[:title].present?
-          @tasks = current_user.tasks.search_title(params[:title])
+          @tasks = current_user.tasks.search_title(params[:title]).page(params[:page])
         elsif params[:status].present? && params[:title].blank?
-          @tasks = current_user.tasks.search_status(params[:status])
+          @tasks = current_user.tasks.search_status(params[:status]).page(params[:page])
         else
-          @tasks = @task.recent
+          @tasks = @task.recent.page(params[:page])
         end
       end
     elsif params[:label_id].blank?
-      redirect_to tasks_path
+        redirect_to tasks_path
     else
       @tasks = Label.find(params[:label_id]).tasks.includes(:user).where(user_id: current_user.id).page(params[:page])
     end
-      @tasks = @tasks.page(params[:page])
   end
 
   def show
