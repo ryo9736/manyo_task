@@ -60,8 +60,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     task_0 = task[0]
 
-    save_and_open_page
-
     expect(task_0).to have_content "課題2"
 
   end
@@ -84,7 +82,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     visit tasks_path
 
-    fill_in 'task_title', with: '課題1'
+    fill_in 'title', with: '課題1'
 
     click_on '絞り込み検索'
 
@@ -100,8 +98,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     click_on '絞り込み検索'
 
-    save_and_open_page
-
     expect(page).to have_content '課題1'
 
   end
@@ -110,13 +106,11 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     visit tasks_path
 
-    fill_in 'task_title', with: '課題2'
+    fill_in 'title', with: '課題2'
 
     find("option[value='着手中']").select_option
 
     click_on '絞り込み検索'
-
-    save_and_open_page
 
     expect(page).to have_content 'テスト2'
 
@@ -133,11 +127,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     expect(task_0).to have_content "テスト1"
 
-    save_and_open_page
-
   end
-
 end
 
 #bin/rspec spec/features/task.spec.rb
-  #save_and_open_page
+#save_and_open_page

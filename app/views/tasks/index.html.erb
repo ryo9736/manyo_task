@@ -5,11 +5,15 @@
       <h1>タスク一覧</h1>
       <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
       <%= link_to "優先順位で高い順にソートする", tasks_path(sort_priority: "true") %>
-      <%= form_with( model:Task.new, url: tasks_path, method: :get, local: true) do |f| %>
-        <%= f.label :title, "タイトル検索"  %>
+      <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
+        <%= f.label :title, "タイトル検索",class: "search_title"  %>
         <%= f.text_field :title %>
         <%= f.label :status, "状態検索" %>
         <%= f.select :status, ['未着手','着手中','完了'], include_blank: true, selected: '' %>
+        <%= f.label :label_id, "ラベル検索"  %>
+        <%= f.select :label_id,  Label.all.map{|label| [label.name, label.id]},
+        include_blank: true, selected: ''%>
+        <%= f.hidden_field :sort_label, value: 'true' %>
         <%= f.hidden_field :search, value: 'true' %>
         <%= f.submit '絞り込み検索'%>
       <% end %>

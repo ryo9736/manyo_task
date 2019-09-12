@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task,only: [:show,:edit,:update,:destroy]
   def new
     @task = Task.new
+    @labels = Label.all
   end
 
   def create
@@ -16,32 +17,38 @@ class TasksController < ApplicationController
 
   def index
     @task = current_user.tasks
-    if params[:search].nil?
-      if params[:sort_expired]
-        @tasks = @task.expired_sort
-      elsif params[:sort_priority]
-        @tasks = @task.priority_sort
+    if params[:sort_label].nil?
+      if params[:search].nil?
+        if params[:sort_expired]
+          @tasks = @task.expired_sort.page(params[:page])
+        elsif params[:sort_priority]
+          @tasks = @task.priority_sort.page(params[:page])
+        else
+          @tasks = @task.recent.page(params[:page])
+        end
       else
-        @tasks = @task.recent
+        if params[:status].present? && params[:title].present?
+          @tasks = current_user.tasks.search_status(params[:status]).search_title(params[:title]).page(params[:page])
+        elsif params[:status].blank? && params[:title].present?
+          @tasks = current_user.tasks.search_title(params[:title]).page(params[:page])
+        elsif params[:status].present? && params[:title].blank?
+          @tasks = current_user.tasks.search_status(params[:status]).page(params[:page])
+        else
+          @tasks = @task.recent.page(params[:page])
+        end
       end
+    elsif params[:label_id].blank?
+        redirect_to tasks_path
     else
-      if  params[:task] && params.dig(:task, :title).present? && params.dig(:task, :status).present?
-        @tasks = Task.search_title(params).search_status(params)
-      elsif params[:task] && params.dig(:task, :title).present? && params.dig(:task, :status).blank?
-        @tasks = Task.search_title(params)
-      elsif params[:task] && params.dig(:task, :title).blank? && params.dig(:task, :status).present?
-        @tasks = Task.search_status(params)
-      else
-        @tasks = @task.recent
-      end
+      @tasks = Label.find(params[:label_id]).tasks.includes(:user).where(user_id: current_user.id).page(params[:page])
     end
-    @tasks = @tasks.page(params[:page])
   end
 
   def show
   end
 
   def edit
+    @labels = Label.all
   end
 
   def update
@@ -62,8 +69,12 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title,:content,:expired,:status,:search,:priority)
+    params.require(:task).permit(:title,:content,:expired,:status,:search,:priority,:label_id,label_ids: [])
   end
+
+   def search_params
+     params[:search]
+   end
 
   def set_task
     @task = Task.find(params[:id])
